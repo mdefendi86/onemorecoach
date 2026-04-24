@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="One More Coach — Custom online training, nutrition & coaching built for your goals. Apply today with Coach Josh M.">
+  <title>One More Coach | Online Personal Training</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- =============================================
+     STICKY NAVIGATION
+     ============================================= -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="One More Coach — Home">
+      <img src="images/logo.png" alt="One More Coach">
+    </a>
+
+    <!-- Hamburger (mobile) -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Nav links -->
+    <nav class="nav-menu" id="navMenu" aria-label="Main navigation">
+      <a href="programs.html">Programs</a>
+      <a href="#results">Results</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="btn-nav-cta">Apply Now</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- =============================================
+     HERO
+     ============================================= -->
+<section class="hero" id="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Online Personal Coaching</p>
+    <h1 class="hero-headline">
+      One more rep.<br>
+      <em>One more % better.</em>
+    </h1>
+    <p class="hero-sub">
+      Custom online training, nutrition &amp; coaching — built for your goals.
+    </p>
+    <div class="hero-ctas">
+      <a href="contact.html" class="btn btn-primary">Apply for Coaching</a>
+      <a href="#results" class="btn btn-ghost">See Results</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================
+     SOCIAL PROOF STRIP
+     ============================================= -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">50+</div>
+      <div class="stat-lbl">Clients</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-lbl">Online</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-lbl">Coach Access</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =============================================
+     PROGRAMS OVERVIEW — Online + In-Person hub
+     ============================================= -->
+<section class="section-pad" id="programs">
+  <div class="container">
+
+    <div class="section-head">
+      <span class="section-tag">What We Offer</span>
+      <h2 class="section-title">Train In-Person or Online</h2>
+      <p class="section-sub">
+        Face-to-face sessions or fully remote coaching — every program is built around your goals, your schedule, and your lifestyle.
+      </p>
+    </div>
+
+    <!-- ---- In-Person Training ---- -->
+    <div class="prog-type-divider">
+      <span class="prog-type-label">In-Person Training</span>
+      <span class="prog-type-line"></span>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-card-inperson-layout">
+
+        <div class="prog-card-inperson-main">
+          <span class="prog-tag">In-Person · [City]</span>
+          <h3>1-on-1 Personal Training</h3>
+          <p>Face-to-face coaching with Josh at [Gym / Location]. Sessions, schedule, and training style all built around you — with nutrition and supplementation add-ons available for a complete program.</p>
+          <div class="prog-price">From $[XX] <span>/ session</span></div>
+          <a href="inperson.html" class="prog-link">See full program →</a>
+        </div>
+
+        <div class="prog-card-inperson-bullets">
+          <div class="inperson-bullet">
+            <span class="inperson-bullet-icon">📍</span>
+            <span>[Gym Name] — [City, State]</span>
+          </div>
+          <div class="inperson-bullet">
+            <span class="inperson-bullet-icon">⏱</span>
+            <span>60-minute 1-on-1 sessions</span>
+          </div>
+          <div class="inperson-bullet">
+            <span class="inperson-bullet-icon">🤝</span>
+            <span>Hands-on form coaching every rep</span>
+          </div>
+          <div class="inperson-bullet">
+            <span class="inperson-bullet-icon">🥗</span>
+            <span>Nutrition &amp; supplement add-ons available</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ---- Online Coaching ---- -->
+    <div class="prog-type-divider" style="margin-top:40px;">
+      <span class="prog-type-label">Online Coaching</span>
+      <span class="prog-type-line"></span>
+    </div>
+
+    <div class="programs-grid">
+
+      <!-- Program Card 1: Lifestyle -->
+      <div class="prog-card">
+        <span class="prog-tag">Most Popular</span>
+        <h3>Lifestyle</h3>
+        <p>Weight loss &amp; muscle building — complete coaching with training, meals, and weekly check-ins.</p>
+        <div class="prog-price">$125 <span>/ month</span></div>
+        <a href="programs.html#lifestyle" class="prog-link">See full program →</a>
+      </div>
+
+      <!-- Program Card 2: Nutrition -->
+      <div class="prog-card">
+        <span class="prog-tag">Nutrition</span>
+        <h3>Nutrition &amp; Supplementation</h3>
+        <p>Tailored meal plans with real food options and a full supplement stack recommendation.</p>
+        <div class="prog-price">$75 <span>/ month</span></div>
+        <a href="programs.html#nutrition" class="prog-link">See full program →</a>
+      </div>
+
+      <!-- Program Card 3: Training -->
+      <div class="prog-card">
+        <span class="prog-tag">Training</span>
+        <h3>Training Guidance</h3>
+        <p>Structured programming for hybrid, resistance, or endurance — plus video form evaluation.</p>
+        <div class="prog-price">$75 <span>/ month</span></div>
+        <a href="programs.html#training" class="prog-link">See full program →</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =============================================
+     WHAT'S INCLUDED
+     Icon grid
+     ============================================= -->
+<section class="section-alt" id="included">
+  <div class="container">
+
+    <div class="section-head">
+      <span class="section-tag">Everything You Need</span>
+      <h2 class="section-title">What's Included</h2>
+      <p class="section-sub">No matter which program you choose, you're getting real coaching — not just a PDF.</p>
+    </div>
+
+    <div class="included-grid">
+
+      <div class="inc-item">
+        <span class="inc-icon">💪</span>
+        <strong>Custom Training Plan</strong>
+        <span>Built for your body, equipment &amp; schedule</span>
+      </div>
+
+      <div class="inc-item">
+        <span class="inc-icon">🥗</span>
+        <strong>Personalized Meal Plan</strong>
+        <span>Real food. Real options. No crash diets.</span>
+      </div>
+
+      <div class="inc-item">
+        <span class="inc-icon">💊</span>
+        <strong>Supplement Guidance</strong>
+        <span>Know what to take, when, and why</span>
+      </div>
+
+      <div class="inc-item">
+        <span class="inc-icon">📊</span>
+        <strong>Weekly Check-ins</strong>
+        <span>Track progress and adjust every week</span>
+      </div>
+
+      <div class="inc-item">
+        <span class="inc-icon">💬</span>
+        <strong>24/7 Coach Access</strong>
+        <span>Message Josh any time, any day</span>
+      </div>
+
+      <div class="inc-item">
+        <span class="inc-icon">📹</span>
+        <strong>Video Evaluation</strong>
+        <span>Form checks and movement feedback</span>
+      </div>
+
+      <div class="inc-item">
+        <span class="inc-icon">📈</span>
+        <strong>Progress Tracking</strong>
+        <span>Measurable goals and clear milestones</span>
+      </div>
+
+      <div class="inc-item">
+        <span class="inc-icon">🎯</span>
+        <strong>Goal Adjustments</strong>
+        <span>Plans that evolve as you progress</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================
+     CLIENT RESULTS / BEFORE & AFTERS
+     =============================================
+     TO ADD REAL PHOTOS:
+     1. Replace the entire <div class="result-photo"> with:
+        <img src="results/client-1.jpg" alt="[Description]" style="width:100%;aspect-ratio:3/4;object-fit:cover;">
+     2. Remove the comment block inside each card
+     ============================================= -->
+<section class="section-pad" id="results">
+  <div class="container">
+
+    <div class="section-head">
+      <span class="section-tag">Client Results</span>
+      <h2 class="section-title">Real Clients. Real Results.</h2>
+      <p class="section-sub">
+        These are actual transformations from people who showed up and put in the work.
+      </p>
+    </div>
+
+    <div class="results-grid">
+
+      <!-- =============================================
+           RESULTS PHOTOS
+           Create a /results/ folder in the project root and save each
+           photo with the filename listed on its card below.
+           ============================================= -->
+
+      <!-- RESULT 1 → results/result-1.jpg -->
+      <div class="result-card">
+        <img src="results/result-1.jpg" alt="Client muscle building transformation — before and after" class="result-img">
+        <div class="result-meta">
+          <span class="result-type">Muscle Building</span>
+          <span class="result-dot"></span>
+        </div>
+      </div>
+
+      <!-- RESULT 2 → results/result-2.jpg -->
+      <div class="result-card">
+        <img src="results/result-2.jpg" alt="Client weight loss transformation — before and after" class="result-img">
+        <div class="result-meta">
+          <span class="result-type">Weight Loss</span>
+          <span class="result-dot"></span>
+        </div>
+      </div>
+
+      <!-- RESULT 3 → results/result-3.jpg -->
+      <div class="result-card">
+        <img src="results/result-3.jpg" alt="Client body recomposition transformation — before and after" class="result-img">
+        <div class="result-meta">
+          <span class="result-type">Body Recomp</span>
+          <span class="result-dot"></span>
+        </div>
+      </div>
+
+      <!-- RESULT 4 → results/result-4.jpg -->
+      <div class="result-card">
+        <img src="results/result-4.jpg" alt="Client body recomposition — back view before and after" class="result-img">
+        <div class="result-meta">
+          <span class="result-type">Body Recomp</span>
+          <span class="result-dot"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================
+     TESTIMONIALS
+     =============================================
+     Replace placeholder quotes with real client quotes.
+     ============================================= -->
+<section class="section-alt" id="testimonials">
+  <div class="container">
+
+    <div class="section-head">
+      <span class="section-tag">What Clients Say</span>
+      <h2 class="section-title">The Results Speak</h2>
+    </div>
+
+    <div class="testi-grid">
+
+      <!-- TESTIMONIAL 1 — replace with real client quote -->
+      <div class="testi-card">
+        <p class="testi-quote">
+          "Replace this with a real quote from one of your clients. Something specific — what changed for them, what was different about working with Josh, and what results they saw."
+        </p>
+        <div class="testi-name">Client Name</div>
+        <div class="testi-prog">Lifestyle Program &nbsp;·&nbsp; Weight Loss</div>
+      </div>
+
+      <!-- TESTIMONIAL 2 — replace with real client quote -->
+      <div class="testi-card">
+        <p class="testi-quote">
+          "Replace this with a real quote from one of your clients. Focus on accountability, communication quality, and the personalized approach that made the difference."
+        </p>
+        <div class="testi-name">Client Name</div>
+        <div class="testi-prog">Training Guidance &nbsp;·&nbsp; Hybrid</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================
+     GOOGLE REVIEWS
+     =============================================
+     SETUP (do once GMB listing is live):
+       1. Claim/create listing at business.google.com
+       2. Find your Place ID at: g.co/placeID
+       3. Your review link:
+          https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID
+       4. Replace GMB_REVIEW_LINK below with that URL
+       5. For live rating + count:
+          a. Go to console.cloud.google.com → enable "Places API (New)"
+          b. Create an API key, restrict it to your domain
+          c. Fill in GMB_PLACE_ID and GMB_API_KEY in the script at bottom
+     ============================================= -->
+<section class="reviews-section section-alt" id="google-reviews">
+  <div class="container">
+
+    <div class="section-head">
+      <span class="section-tag">Google Reviews</span>
+      <h2 class="section-title" style="margin-bottom:28px;">Rated on Google</h2>
+    </div>
+
+    <div class="reviews-badge">
+      <div class="reviews-g-row">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        <span class="reviews-g-label">Google</span>
+      </div>
+      <div class="reviews-rating-num" id="gmb-rating">—</div>
+      <div class="reviews-stars" id="gmb-stars">☆☆☆☆☆</div>
+      <div class="reviews-count" id="gmb-count">— reviews</div>
+    </div>
+
+    <!-- REPLACE href once GMB is live — see setup notes above -->
+    <a
+      href="https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID"
+      class="btn-google-review"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Write a Google review for One More Coach"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+      </svg>
+      Write a Google Review
+    </a>
+
+  </div>
+</section>
+
+
+<!-- =============================================
+     COACH BIO SNIPPET
+     =============================================
+     Replace the avatar div with an <img> tag when Josh's photo is ready.
+     ============================================= -->
+<section class="section-pad" id="about-snippet">
+  <div class="container">
+    <div class="bio-snippet-inner">
+
+      <!-- AVATAR SLOT: Replace this div with:
+           <img src="photos/josh-headshot.jpg" alt="Coach Josh Horton"
+                style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);flex-shrink:0;">
+      -->
+      <div class="bio-avatar" aria-label="Coach Josh Horton — avatar placeholder">JH</div>
+
+      <div>
+        <h2 class="bio-name">Josh Horton</h2>
+        <p class="bio-certs">12 Years Training &nbsp;·&nbsp; Competitive Bodybuilder &nbsp;·&nbsp; [Certs coming]</p>
+        <p class="bio-text">
+          12 years under the iron. A decade of competitive bodybuilding. Josh built One More Coach to bring real, elite-level coaching to people who are done guessing and ready to see results.
+        </p>
+        <a href="about.html" class="btn btn-ghost" style="font-size:0.95rem;padding:11px 22px;">Full Bio →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================
+     LEAD CAPTURE FORM — PRIMARY CTA
+     =============================================
+     FORMSPREE SETUP:
+       1. Go to https://formspree.io and create a free account
+       2. Create a new form, copy your form ID
+       3. Replace "YOUR_FORM_ID" in the action attribute below
+     MAILTO ALTERNATIVE:
+       Change action to "mailto:josh@onemorecoaching.com" and add enctype="text/plain"
+     ============================================= -->
+<section class="lead-section section-pad" id="apply">
+  <div class="container">
+    <div class="lead-form-wrap">
+
+      <div class="section-head">
+        <span class="section-tag">Get Started</span>
+        <h2 class="section-title">Ready to do one more?</h2>
+        <p class="section-sub">Apply below and Josh will reach out within 24 hours.</p>
+      </div>
+
+      <form
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+        novalidate
+        aria-label="Coaching application form"
+      >
+        <!-- Hidden field for Formspree spam protection -->
+        <input type="hidden" name="_subject" value="New Coaching Application — One More Coach">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="apply-name">Full Name</label>
+            <input
+              type="text"
+              id="apply-name"
+              name="name"
+              placeholder="Your name"
+              required
+              autocomplete="name"
+            >
+          </div>
+          <div class="form-group">
+            <label for="apply-email">Email Address</label>
+            <input
+              type="email"
+              id="apply-email"
+              name="email"
+              placeholder="you@email.com"
+              required
+              autocomplete="email"
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apply-goal">Your Primary Goal</label>
+          <select id="apply-goal" name="goal" required>
+            <option value="" disabled selected>Select your goal…</option>
+            <option value="weight-loss">Weight Loss</option>
+            <option value="build-muscle">Build Muscle</option>
+            <option value="hybrid">Hybrid / Performance</option>
+            <option value="not-sure">Not Sure Yet</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="apply-heard">How did you hear about us?</label>
+          <input
+            type="text"
+            id="apply-heard"
+            name="heard_from"
+            placeholder="Instagram, friend referral, Google…"
+          >
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-submit">Apply for Coaching</button>
+        <p class="form-note">No spam, ever. Josh will contact you personally within 24 hours.</p>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================
+     FOOTER
+     ============================================= -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">One More Coach</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="programs.html">Programs</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Apply</a>
+      <a href="https://www.instagram.com/onemore_coaching/" target="_blank" rel="noopener noreferrer">@onemore_coaching</a>
+      <a href="mailto:josh@onemorecoach.com">josh@onemorecoach.com</a>
+      <!-- REPLACE href with real GMB review link once listing is live -->
+      <a href="https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID" target="_blank" rel="noopener noreferrer">⭐ Leave a Review</a>
+    </nav>
+    <p class="footer-copy">
+      &copy; <span class="year"></span> One More Coach &nbsp;|&nbsp; onemorecoaching.com &nbsp;|&nbsp; @onemore_coaching
+    </p>
+  </div>
+</footer>
+
+
+<!-- =============================================
+     JAVASCRIPT — Nav toggle + dynamic year
+     ============================================= -->
+<script>
+  (function () {
+    // ---- Hamburger menu ----
+    var toggle = document.getElementById('navToggle');
+    var menu   = document.getElementById('navMenu');
+
+    toggle.addEventListener('click', function () {
+      var isOpen = menu.classList.toggle('open');
+      toggle.classList.toggle('active', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close menu when a link is clicked
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        menu.classList.remove('open');
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function (e) {
+      if (
+        menu.classList.contains('open') &&
+        !menu.contains(e.target) &&
+        e.target !== toggle &&
+        !toggle.contains(e.target)
+      ) {
+        menu.classList.remove('open');
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // ---- Dynamic year in footer ----
+    document.querySelectorAll('.year').forEach(function (el) {
+      el.textContent = new Date().getFullYear();
+    });
+  })();
+
+  // =============================================
+  // GOOGLE REVIEWS — LIVE DATA
+  // Fill in both values below once GMB is set up.
+  //
+  // GMB_PLACE_ID:  Find at g.co/placeID
+  // GMB_API_KEY:   console.cloud.google.com → Places API (New) → Credentials
+  //                Restrict the key to your domain for security.
+  //
+  // Costs: ~$0.017 per page load — covered by Google's $200/mo free credit
+  // until ~11,000 visits/month. Effectively free for a new business.
+  // =============================================
+  (function () {
+    var GMB_PLACE_ID = 'YOUR_PLACE_ID';
+    var GMB_API_KEY  = 'YOUR_API_KEY';
+
+    // Exit silently if placeholders haven't been filled in yet
+    if (GMB_PLACE_ID === 'YOUR_PLACE_ID' || GMB_API_KEY === 'YOUR_API_KEY') return;
+
+    fetch('https://places.googleapis.com/v1/places/' + GMB_PLACE_ID, {
+      headers: {
+        'X-Goog-Api-Key':   GMB_API_KEY,
+        'X-Goog-FieldMask': 'rating,userRatingCount'
+      }
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (!data.rating) return;
+
+      var ratingEl = document.getElementById('gmb-rating');
+      var starsEl  = document.getElementById('gmb-stars');
+      var countEl  = document.getElementById('gmb-count');
+
+      if (ratingEl) ratingEl.textContent = data.rating.toFixed(1);
+      if (countEl)  countEl.textContent  = data.userRatingCount + ' Google reviews';
+      if (starsEl) {
+        var full  = Math.floor(data.rating);
+        var empty = 5 - full;
+        starsEl.textContent = '★'.repeat(full) + '☆'.repeat(empty);
+        starsEl.classList.add('loaded'); // turns stars accent-yellow
+      }
+    })
+    .catch(function () { /* silent fail — placeholder dashes remain */ });
+  })();
+</script>
+
+</body>
+</html>
