@@ -355,8 +355,8 @@ src/
 **Total:** ~12–18 hours of focused work to reach + exceed parity with the current site, with a vastly better foundation for iteration.
 
 ### Open questions to resolve before rebuild
-1. Which accent — yellow `#FFE000` or the lime green leftover `#C8F55A`?
-2. Final email address — `josh@onemorecoach.com` or `josh@onemorecoaching.com`?
+1. ~~Which accent — yellow `#FFE000` or the lime green leftover `#C8F55A`?~~ **RESOLVED 2026-05-23 — neither.** Use the logo-matched accent color as the primary brand accent (visual estimate `#F5E342`, pending pixel-pick verification from `../images/logo.png`). The legacy `#FFE000` is close but slightly too pure/warm; the leftover `#C8F55A` is too green. See [REBUILD_PLAN.md §15 — Resolved decisions](REBUILD_PLAN.md#15-open-questions--blockers) for the canonical entry.
+2. ~~Final email address — `josh@onemorecoach.com` or `josh@onemorecoaching.com`?~~ **RESOLVED 2026-05-23 — `josh@onemorecoach.com`.** Canonical domain is also `onemorecoach.com`; Instagram handle is `@onemorecoach` (no underscore — differs from legacy `@onemore_coaching`). `josh@onemorecoaching.com` is not used unless deliberately added later as an alias. See [REBUILD_PLAN.md §15 — Resolved decisions](REBUILD_PLAN.md#15-open-questions--blockers) entries #2, #11, and #15 for the canonical entries.
 3. Real city / gym name / pricing for in-person training?
 4. Are the certifications confirmed yet, or stay TBD?
 5. Headshot + full photo of Josh — available now?

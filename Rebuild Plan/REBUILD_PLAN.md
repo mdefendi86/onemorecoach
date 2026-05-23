@@ -389,7 +389,7 @@ All events use snake_case names. Custom params must be registered as **Custom Di
 | `page_view` | Initial load + every SPA route change | (GA4 defaults) | `GoogleAnalytics.tsx` |
 | `apply_cta_click` | Any "Apply"/"Apply Now"/"Apply for Coaching" button is clicked | `location` (`hero`, `nav`, `home_bottom`, `programs_page`, `about_bottom`, `program_card`) | `ApplyCtaLink` wrapper |
 | `program_tier_click` | Any pricing tier is clicked | `program` (`lifestyle`/`nutrition`/`training`/`inperson`), `term` (`monthly`/`3month`/`6month`/`12month`/`single`) | `PricingTier` component |
-| `instagram_click` | Any link to `instagram.com/onemore_coaching` is clicked | `location` (`footer`, `about`, `contact`) | `InstagramLink` wrapper |
+| `instagram_click` | Any link to `instagram.com/onemorecoach` is clicked | `location` (`footer`, `about`, `contact`) | `InstagramLink` wrapper |
 | `email_click` | Any `mailto:` link is clicked | `location` | `EmailLink` wrapper |
 | `application_submit` | Application form returns 200 from Server Action | `form_location` (`home`, `apply`) | `ApplicationForm` success branch |
 
@@ -462,7 +462,13 @@ Full standards + the Lighthouse baseline live in `docs/performance.md` and `docs
 Tick boxes as work ships. Each phase ends with a concrete deliverable that can be reviewed before moving to the next.
 
 ### Phase 0 — scaffolding & decision freeze (~1–2 hrs)
-- [ ] **Resolve hard blockers from §15** (accent color, email address) — these inform the Tailwind theme and `business.ts`.
+- [x] **Accent color resolved** (logo-matched, ~`#F5E342` — pending pixel-pick verification). See §15 Resolved decisions #1.
+- [x] **Primary email resolved** (`josh@onemorecoach.com`). See §15 Resolved decisions #2.
+- [x] **Canonical domain resolved** (`onemorecoach.com`). See §15 Resolved decisions #11.
+- [x] **Instagram handle resolved** (`@onemorecoach`, no underscore — differs from legacy). See §15 Resolved decisions #15.
+- [ ] All Phase 0 hard blockers cleared — safe to start scaffolding.
+- [ ] Color-pick the exact accent hex from `images/logo.png` in design tooling and commit it to the Tailwind `@theme` (replace the estimated `#F5E342`).
+- [ ] Verify the `@onemorecoach` Instagram handle is owned by Josh or available to claim.
 - [ ] `pnpm create next-app` — TypeScript, App Router, Tailwind, ESLint, src directory.
 - [ ] Add Prettier config.
 - [ ] Set up `next/font/google` for Bebas Neue + Inter in `app/layout.tsx`.
@@ -556,10 +562,20 @@ Tick boxes as work ships. Each phase ends with a concrete deliverable that can b
 
 These don't block scaffolding (Phase 0) but most block launch (Phase 6). Resolve before the relevant phase starts.
 
+### Resolved decisions
+
+| # | Decided | Decision | Date |
+|---|---|---|---|
+| 1 | Accent color | **Use the logo-matched accent color as the primary brand accent.** Visual estimate: `#F5E342` — a vivid electric yellow that matches the lightning bolt, banner outline, and "TEAM / ONE MORE COACH" wordmark in `images/logo.png`. The legacy `#FFE000` is close but slightly too pure/warm and lacks the cool undertone the logo has; the leftover `#C8F55A` is too green and was never on-brand. **Final exact hex must be color-picked from `images/logo.png` in design tooling (Figma / Photoshop / online picker) before being committed to the Tailwind theme** — the `#F5E342` value here is a confident eyeball estimate, not a measured value. Once committed, this hex is the *only* place an accent color is declared (see §2 principle 8 and §5 Brand tokens row). | 2026-05-23 |
+| 2 | Primary business email | **`josh@onemorecoach.com`** — sole canonical email. `josh@onemorecoaching.com` is **not** used in the rebuild unless we deliberately add it later as a redirect/alias. Lives in `src/data/business.ts → email`; consumed by footer, contact page, `mailto:` links, JSON-LD `LocalBusiness`, Resend `CONTACT_TO_EMAIL` default, and Resend `from`/`to` headers. | 2026-05-23 |
+| 11 | Canonical domain | **`onemorecoach.com`** — sole canonical domain. `onemorecoaching.com` is not used in the rebuild unless we deliberately add it later as a redirect to `onemorecoach.com`. Lives in `src/data/business.ts → canonicalUrl = 'https://onemorecoach.com'`; consumed by every page's `metadata.alternates.canonical`, `sitemap.ts`, `robots.ts`, JSON-LD `url` fields, and the README/launch-checklist references. DNS cutover targets this domain in Phase 6. | 2026-05-23 |
+| 15 (new) | Instagram handle | **`@onemorecoach`** (no underscore). **Differs from the legacy site's `@onemore_coaching`** — the rebuild drops the underscore. Lives in `src/data/business.ts → socials.instagram = '@onemorecoach'` and `socials.instagramUrl = 'https://instagram.com/onemorecoach'`; consumed by `InstagramLink` wrappers in footer/about/contact, Instagram CTA buttons, and JSON-LD `sameAs`. **Action item before launch:** verify the `@onemorecoach` handle is actually owned by Josh (or available to claim) on Instagram — if it's not, this decision needs to be revisited. | 2026-05-23 |
+
+### Open
+
 | # | Question | Blocks | Owner |
 |---|---|---|---|
-| 1 | Final accent color — `#FFE000` (yellow), the leftover `#C8F55A` (lime), or something new? | Phase 0 (Tailwind theme) | Mario + Josh |
-| 2 | Final business email — `josh@onemorecoach.com` or `josh@onemorecoaching.com`? | Phase 0 (`business.ts`), Phase 3 (Resend), Phase 6 (mail) | Josh |
+| 1 | ~~Final accent color — `#FFE000` (yellow), the leftover `#C8F55A` (lime), or something new?~~ **RESOLVED 2026-05-23** — see "Resolved decisions" below. | — | — |
 | 3 | Real city / gym name / address for in-person training? | Phase 2 (programs + in-person copy), Phase 5 (`LocalBusiness` schema) | Josh |
 | 4 | In-person pricing — real numbers for single session / 4 / 8 / 12 sessions? | Phase 2 | Josh |
 | 5 | In-person availability — days/times? | Phase 2 | Josh |
@@ -568,8 +584,7 @@ These don't block scaffolding (Phase 0) but most block launch (Phase 6). Resolve
 | 8 | Real client testimonials + result captions — collected yet? | Phase 2 (placeholder OK), pre-launch (real) | Josh |
 | 9 | Google Business Profile — claimed? Place ID? | Phase 5 (schema + reviews) | Josh |
 | 10 | Should `/in-person` survive as its own URL, or 301 to `/programs#in-person`? | Phase 2 | Mario (recommend: keep `/in-person` once city/gym are real — better for local SEO) |
-| 11 | Final canonical domain — `onemorecoach.com`, `onemorecoaching.com`, or both with a 301? | Phase 5 (canonical metadata), Phase 6 (DNS) | Josh |
-| 12 | Form receiving address — same as `business.email`, or a dedicated `applications@…` alias? | Phase 3 | Josh |
+| 12 | Form receiving address — same as `business.email` (`josh@onemorecoach.com`, resolved #2), or a dedicated `applications@…` alias? | Phase 3 | Josh |
 | 13 | Phone number — does Josh want a phone CTA at all, or is form + DM enough? | Phase 1 (whether to build `PhoneLink`) | Josh |
 | 14 | Privacy policy / terms — needed for v1, or post-launch? | Phase 5 (link in footer) | Mario (recommend: ship a basic privacy policy since form collects PII) |
 
@@ -605,7 +620,7 @@ Anti-patterns to actively avoid during the rebuild — these would either re-int
 - A GoDaddy/HTML reference structure with DNS snapshots, pagespeed baselines, rebuild-rationale memos. Keep the legacy HTML for visual QA only.
 
 **Process anti-patterns:**
-- Do not start coding before §15 question 1 (accent) and question 2 (email) are answered. They're 60-second decisions that prevent rework.
+- All four Phase 0 hard blockers (accent color, primary email, canonical domain, Instagram handle) were resolved 2026-05-23 — see §15 Resolved decisions. The remaining open questions are content/asset blockers for later phases, not coding blockers for Phase 0.
 - Do not add a CMS, blog, or scheduling integration in v1. Ship first; complexity later.
 - Do not add analytics infrastructure for events you don't plan to fire.
 - Do not skip the launch checklist in Phase 6 to ship a day early. Every `needsClientInput` flag flips to `false` first.
@@ -622,7 +637,7 @@ Drop this into `README.md` at the repo root when scaffolding begins. Fill in tab
 
 ## Overview
 Marketing + lead-capture site for One More Coach (Coach Josh Horton).
-Live: https://onemorecoaching.com
+Live: https://onemorecoach.com
 Launch checklist: docs/launch-checklist.md
 Rebuild plan: Rebuild Plan/REBUILD_PLAN.md
 
