@@ -412,10 +412,12 @@ Full event docs + how to register Custom Dimensions live in `docs/analytics.md`.
 | Asset | Current state | Target |
 |---|---|---|
 | Logo | `images/logo.png` — 4.6 MB | `public/logo.svg` (or 144px-tall WebP <30 KB if SVG infeasible). Render via `next/image` or inline SVG. |
-| Coach headshot | None (CSS "JH" placeholder) | `public/coach/josh-headshot.webp` — square crop, 800×800, <120 KB. `next/image` with `priority` when above the fold. |
-| Coach full-length | None ("📸 Coach photo here" placeholder on about) | `public/coach/josh-full.webp` — portrait, ~1200×1600, <250 KB. |
-| Result photos | `results/result-1..4.JPG` (uppercase ext, 87 KB–820 KB) | `public/results/result-1.webp` … (lowercase, <200 KB each, square 1:1 crop). |
-| Unused images | `results/IMG_9420.jpg` (1.8 MB), `results/result-5.JPG` | Delete or use — don't ship orphaned assets. |
+| Coach headshot | `images/owner-images/Selfie of josh wearing black shirt(2).webp` (phone selfie, neutral wall) | `public/coach/josh-headshot.webp` — square crop, 800×800, <120 KB. `next/image` with `priority` when above the fold. Treated as the starter headshot; a studio shoot is an Optional Upgrade item in `docs/launch-checklist.md`. |
+| Coach full-length | Several candidates in `images/owner-images/` (e.g. "Josh in black tank doing a ez bar curl side view.webp", "Josh doing back double bicep.webp") | `public/coach/josh-full.webp` — portrait, ~1200×1600, <250 KB. Final selection captured in [IMAGE_INVENTORY.md](IMAGE_INVENTORY.md). |
+| Coaching-in-action photos (Josh + Sydney) | 4 files in `images/owner-images/` (RDL form-check, chest-supported row, hamstring curls) | `public/programs/coaching-*.webp`. Used on the In-Person Training page and supporting program imagery. See [IMAGE_INVENTORY.md](IMAGE_INVENTORY.md) for per-file routing. |
+| Coach's own transformation | `images/owner-images/Transformation of josh from bodybuilding to hybrid.webp` | `public/coach/josh-transformation.webp`. Displayed on the About page as part of Josh's personal-story narrative — **not** in `public/results/`, which is reserved for client transformations. |
+| Client result photos | `results/result-1..5.JPG` + `results/IMG_9420.jpg` (existing folder is the canonical source for client results) | `public/results/result-*.webp` (lowercase, WebP, <200 KB each, square 1:1 crop). The selection of which of the 6 source files actually ships is a content decision for Josh during Phase 2/4. |
+| Future client result image folder | `public/images/clients/` is **not** added in v1 — `public/results/` is the canonical location for client result images. Revisit only if/when a meaningfully different category of client image arrives that doesn't fit the before/after results pattern. | — |
 | Favicon | None | `public/favicon.ico` + `public/apple-touch-icon.png` (180×180). |
 | OG social card | None | `public/og-image.jpg` — 1200×630, brand-colored, includes tagline. |
 
@@ -576,7 +578,7 @@ These don't block scaffolding (Phase 0) but most block launch (Phase 6). Resolve
 | # | Question | Blocks | Owner |
 |---|---|---|---|
 | 1 | ~~Final accent color — `#FFE000` (yellow), the leftover `#C8F55A` (lime), or something new?~~ **RESOLVED 2026-05-23** — see "Resolved decisions" below. | — | — |
-| 3 | Real city / gym name / address for in-person training? | Phase 2 (programs + in-person copy), Phase 5 (`LocalBusiness` schema) | Josh |
+| 3 | Real city / gym name / address for in-person training? **New context:** the image inventory shows a "JUST LIFT GYM" sign in one of the coaching photos — likely the in-person training venue. Confirm the gym name + city + address, **and** decide whether to credit "Just Lift Gym" by name in copy and/or leave the sign visible in photos (Josh's standing rule is "no brands other than One More Coach," which would imply cropping the sign — but the venue may be a legitimate exception). See [IMAGE_INVENTORY.md](IMAGE_INVENTORY.md). | Phase 2 (programs + in-person copy), Phase 5 (`LocalBusiness` schema) | Josh |
 | 4 | In-person pricing — real numbers for single session / 4 / 8 / 12 sessions? | Phase 2 | Josh |
 | 5 | In-person availability — days/times? | Phase 2 | Josh |
 | 6 | Coach certifications — real names? | Phase 2 (`coach.ts`) | Josh |
