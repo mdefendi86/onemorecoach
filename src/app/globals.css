@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+
+/*
+  Theme tokens — the ONLY place brand values are declared.
+  Reference: REBUILD_PLAN.md §2 principle 8 ("one accent color")
+             REBUILD_PLAN.md §5 "Brand tokens" row
+             REBUILD_PLAN.md §15 Resolved decision #1 (accent color)
+
+  IMPORTANT: --color-accent is the logo-matched accent. The value below
+  (#F5E342) is a visual estimate. Replace with the exact hex color-picked
+  from images/logo.png in design tooling before Phase 2 ships.
+*/
+@theme {
+  --color-bg: #111111;
+  --color-bg-card: #1a1a1a;
+  --color-border: #2a2a2a;
+  --color-text: #ffffff;
+  --color-muted: #888888;
+  --color-accent: #f5e342;
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-bebas), 'Impact', sans-serif;
+
+  --radius: 8px;
+}
+
+/*
+  Base resets — minimal. Component-level styling is Tailwind utility
+  classes, not custom CSS (REBUILD_PLAN.md §2 principle 7).
+*/
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
