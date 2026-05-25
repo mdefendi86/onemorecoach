@@ -66,6 +66,7 @@ Explicitly **not** in v1:
 - No animation library (Framer Motion, etc.) until there's a real animation need.
 - No state management library. React state is enough for one form.
 - No second analytics provider (Plausible/PostHog) on top of GA4.
+- **No Instagram embeds, no Instagram Graph API, no third-party feed widgets, no social-media scripts.** Instagram presence in v1 is a simple outbound CTA only — see §15 Resolved decision #16.
 
 ---
 
@@ -231,7 +232,7 @@ Five static routes plus the asset routes Next.js generates for free.
 
 | Route | Source file | Replaces | Notes |
 |---|---|---|---|
-| `/` | `app/page.tsx` | index.html | Hero · StatsStrip · ProgramsOverview · IncludedGrid · ResultsGrid · TestimonialsGrid · GoogleReviewsBadge (conditional) · CoachBioSnippet · ApplyCTA · Footer |
+| `/` | `app/page.tsx` | index.html | Hero · StatsStrip · ProgramsOverview · IncludedGrid · ResultsGrid · TestimonialsGrid · GoogleReviewsBadge (conditional) · **InstagramCtaSection** (placed near the results / social-proof area per §15 #16) · CoachBioSnippet · ApplyCTA · Footer |
 | `/programs` | `app/programs/page.tsx` | programs.html | Renders all four programs from `programs.ts`. Each tier links to `/apply?program=…&term=…`. |
 | `/in-person` | `app/in-person/page.tsx` | inperson.html | **Decision pending** (open question §15). Either a real page that pulls only the `in-person` slug from `programs.ts`, or a 301 redirect to `/programs#in-person`. |
 | `/about` | `app/about/page.tsx` | about.html | Hero with real headshot + cert badges from `coach.ts` · Bio paragraphs from `coach.ts` · Pull quote · HowIHelpYouWin grid · WhyOnlineGrid · Instagram CTA · Bottom CTA |
@@ -282,6 +283,7 @@ Built in dependency order. Phase 1 covers primitives + chrome; Phase 2 covers co
 | `IncludedGrid` | `included.ts` | `/` |
 | `WhyOnlineGrid` | `whyOnline.ts` | `/about` |
 | `GoogleReviewsBadge` | `/api/reviews` route + env vars | `/` (conditional render) |
+| `InstagramCtaSection` | `business.ts → socials.instagram` + `socials.instagramUrl` | `/` (near results / social-proof), `/about` (optional). A static section: heading ("Follow on Instagram"), one line of copy, a single `InstagramLink` button labeled "Follow @onemorecoach". No feed, no embeds, no API. |
 
 ### Interaction wrappers (Phase 1)
 
@@ -389,7 +391,7 @@ All events use snake_case names. Custom params must be registered as **Custom Di
 | `page_view` | Initial load + every SPA route change | (GA4 defaults) | `GoogleAnalytics.tsx` |
 | `apply_cta_click` | Any "Apply"/"Apply Now"/"Apply for Coaching" button is clicked | `location` (`hero`, `nav`, `home_bottom`, `programs_page`, `about_bottom`, `program_card`) | `ApplyCtaLink` wrapper |
 | `program_tier_click` | Any pricing tier is clicked | `program` (`lifestyle`/`nutrition`/`training`/`inperson`), `term` (`monthly`/`3month`/`6month`/`12month`/`single`) | `PricingTier` component |
-| `instagram_click` | Any link to `instagram.com/onemorecoach` is clicked | `location` (`footer`, `about`, `contact`) | `InstagramLink` wrapper |
+| `instagram_click` | Any link to `instagram.com/onemorecoach` is clicked | `location` (`home_social_proof`, `about`, `footer`, `contact`) — covers the three primary CTA placements from §15 #16 plus any contact-page reference | `InstagramLink` wrapper |
 | `email_click` | Any `mailto:` link is clicked | `location` | `EmailLink` wrapper |
 | `application_submit` | Application form returns 200 from Server Action | `form_location` (`home`, `apply`) | `ApplicationForm` success branch |
 
@@ -572,6 +574,7 @@ These don't block scaffolding (Phase 0) but most block launch (Phase 6). Resolve
 | 2 | Primary business email | **`josh@onemorecoach.com`** — sole canonical email. `josh@onemorecoaching.com` is **not** used in the rebuild unless we deliberately add it later as a redirect/alias. Lives in `src/data/business.ts → email`; consumed by footer, contact page, `mailto:` links, JSON-LD `LocalBusiness`, Resend `CONTACT_TO_EMAIL` default, and Resend `from`/`to` headers. | 2026-05-23 |
 | 11 | Canonical domain | **`onemorecoach.com`** — sole canonical domain. `onemorecoaching.com` is not used in the rebuild unless we deliberately add it later as a redirect to `onemorecoach.com`. Lives in `src/data/business.ts → canonicalUrl = 'https://onemorecoach.com'`; consumed by every page's `metadata.alternates.canonical`, `sitemap.ts`, `robots.ts`, JSON-LD `url` fields, and the README/launch-checklist references. DNS cutover targets this domain in Phase 6. | 2026-05-23 |
 | 15 (new) | Instagram handle | **`@onemorecoach`** (no underscore). **Differs from the legacy site's `@onemore_coaching`** — the rebuild drops the underscore. Lives in `src/data/business.ts → socials.instagram = '@onemorecoach'` and `socials.instagramUrl = 'https://instagram.com/onemorecoach'`; consumed by `InstagramLink` wrappers in footer/about/contact, Instagram CTA buttons, and JSON-LD `sameAs`. **Action item before launch:** verify the `@onemorecoach` handle is actually owned by Josh (or available to claim) on Instagram — if it's not, this decision needs to be revisited. | 2026-05-23 |
+| 16 (new) | V1 social-media scope | **Simple outbound Instagram CTA only — no feed, no embeds, no API integration in v1.** The website does not pull, render, mirror, or cache any Instagram content; users click an outbound link and complete the follow on Instagram itself. Copy: "Follow @onemorecoach". Canonical URL: `https://www.instagram.com/onemorecoach/` (sourced from `business.ts → socials.instagramUrl`, never hard-coded). Placements in v1: (a) homepage near the results / social-proof area, rendered as `InstagramCtaSection`; (b) site-wide footer social link via `SiteFooter`; (c) optional `InstagramCtaSection` on the About page. Explicitly excluded from v1: Instagram Graph API, oEmbed embeds, third-party feed widgets (Curator, EmbedSocial, Tagembed, SnapWidget, etc.), any client-side `instgrm.Embeds.process()` or Meta SDK script. Instagram is **not** a launch-critical content source — the site must be complete and shippable without any Instagram content rendering inside it. Revisit only when there's a concrete reason (e.g. proven traffic from an "as seen on Instagram" angle, or a campaign that needs in-page social proof). See also §3 ("Not in v1") and §16 (anti-patterns). | 2026-05-25 |
 
 ### Open
 
@@ -620,6 +623,14 @@ Anti-patterns to actively avoid during the rebuild — these would either re-int
 - Industry-specific FAQ topics (veteran care, dementia care, VA programs).
 - Six-location `phone_click` instrumentation. Only build event tracking for events that actually fire.
 - A GoDaddy/HTML reference structure with DNS snapshots, pagespeed baselines, rebuild-rationale memos. Keep the legacy HTML for visual QA only.
+
+**Social-media anti-patterns** (per §15 Resolved decision #16):
+- Do not add an Instagram feed, embed, or `<blockquote class="instagram-media">` block anywhere.
+- Do not load the Meta SDK (`//www.instagram.com/embed.js`) or call `window.instgrm.Embeds.process()`.
+- Do not integrate the Instagram Graph API, the oEmbed endpoint, or any third-party social-feed widget (Curator, EmbedSocial, Tagembed, SnapWidget, Juicer, etc.).
+- Do not auto-follow, auto-DM, or attempt any client-side Instagram action. The user must complete the follow on Instagram itself.
+- Do not treat Instagram as a launch-critical content source. The site must ship complete and look finished without any Instagram content rendering inside it.
+- Do not hard-code the Instagram URL anywhere — read from `business.ts → socials.instagramUrl`.
 
 **Process anti-patterns:**
 - All four Phase 0 hard blockers (accent color, primary email, canonical domain, Instagram handle) were resolved 2026-05-23 — see §15 Resolved decisions. The remaining open questions are content/asset blockers for later phases, not coding blockers for Phase 0.
