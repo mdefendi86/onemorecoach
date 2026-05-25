@@ -466,12 +466,12 @@ Full standards + the Lighthouse baseline live in `docs/performance.md` and `docs
 Tick boxes as work ships. Each phase ends with a concrete deliverable that can be reviewed before moving to the next.
 
 ### Phase 0 — scaffolding & decision freeze (~1–2 hrs)
-- [x] **Accent color resolved** (logo-matched, ~`#F5E342` — pending pixel-pick verification). See §15 Resolved decisions #1.
+- [x] **Accent color resolved** (logo-matched, currently `#F2E11F` in `globals.css` — Phase 1 second-pass estimate, still pending exact pixel-pick verification). See §15 Resolved decisions #1.
 - [x] **Primary email resolved** (`josh@onemorecoach.com`). See §15 Resolved decisions #2.
 - [x] **Canonical domain resolved** (`onemorecoach.com`). See §15 Resolved decisions #11.
 - [x] **Instagram handle resolved** (`@onemorecoach`, no underscore — differs from legacy). See §15 Resolved decisions #15.
-- [ ] All Phase 0 hard blockers cleared — safe to start scaffolding.
-- [ ] Color-pick the exact accent hex from `images/logo.png` in design tooling and commit it to the Tailwind `@theme` (replace the estimated `#F5E342`).
+- [x] All Phase 0 hard blockers cleared — Next.js scaffold + data layer landed.
+- [ ] Color-pick the exact accent hex from `images/logo.png` in design tooling and commit it to `globals.css` (replace the current `#F2E11F` estimate).
 - [ ] Verify the `@onemorecoach` Instagram handle is owned by Josh or available to claim.
 - [ ] `pnpm create next-app` — TypeScript, App Router, Tailwind, ESLint, src directory.
 - [ ] Add Prettier config.
@@ -570,7 +570,7 @@ These don't block scaffolding (Phase 0) but most block launch (Phase 6). Resolve
 
 | # | Decided | Decision | Date |
 |---|---|---|---|
-| 1 | Accent color | **Use the logo-matched accent color as the primary brand accent.** Visual estimate: `#F5E342` — a vivid electric yellow that matches the lightning bolt, banner outline, and "TEAM / ONE MORE COACH" wordmark in `images/logo.png`. The legacy `#FFE000` is close but slightly too pure/warm and lacks the cool undertone the logo has; the leftover `#C8F55A` is too green and was never on-brand. **Final exact hex must be color-picked from `images/logo.png` in design tooling (Figma / Photoshop / online picker) before being committed to the Tailwind theme** — the `#F5E342` value here is a confident eyeball estimate, not a measured value. Once committed, this hex is the *only* place an accent color is declared (see §2 principle 8 and §5 Brand tokens row). | 2026-05-23 |
+| 1 | Accent color | **Use the logo-matched accent color as the primary brand accent.** Current value in Tailwind theme: `#F2E11F` (Phase 1 second-pass visual estimate — a vivid electric/lemon yellow matching the lightning bolt and wordmark in `images/logo.png`; more saturated than the original `#F5E342` first-pass estimate). The legacy `#FFE000` is close but slightly too pure/warm; the leftover `#C8F55A` is too green and was never on-brand. **Final exact hex must still be color-picked from `images/logo.png` in design tooling (Figma / Photoshop / online picker)** — `#F2E11F` is an eyeball estimate, not a measured value. Once measured, this hex is the *only* place an accent color is declared (see §2 principle 8 and §5 Brand tokens row). Lives in `src/app/globals.css → @theme → --color-accent`. | 2026-05-23 (revised 2026-05-25 Phase 1) |
 | 2 | Primary business email | **`josh@onemorecoach.com`** — sole canonical email. `josh@onemorecoaching.com` is **not** used in the rebuild unless we deliberately add it later as a redirect/alias. Lives in `src/data/business.ts → email`; consumed by footer, contact page, `mailto:` links, JSON-LD `LocalBusiness`, Resend `CONTACT_TO_EMAIL` default, and Resend `from`/`to` headers. | 2026-05-23 |
 | 11 | Canonical domain | **`onemorecoach.com`** — sole canonical domain. `onemorecoaching.com` is not used in the rebuild unless we deliberately add it later as a redirect to `onemorecoach.com`. Lives in `src/data/business.ts → canonicalUrl = 'https://onemorecoach.com'`; consumed by every page's `metadata.alternates.canonical`, `sitemap.ts`, `robots.ts`, JSON-LD `url` fields, and the README/launch-checklist references. DNS cutover targets this domain in Phase 6. | 2026-05-23 |
 | 15 (new) | Instagram handle | **`@onemorecoach`** (no underscore). **Differs from the legacy site's `@onemore_coaching`** — the rebuild drops the underscore. Lives in `src/data/business.ts → socials.instagram = '@onemorecoach'` and `socials.instagramUrl = 'https://instagram.com/onemorecoach'`; consumed by `InstagramLink` wrappers in footer/about/contact, Instagram CTA buttons, and JSON-LD `sameAs`. **Action item before launch:** verify the `@onemorecoach` handle is actually owned by Josh (or available to claim) on Instagram — if it's not, this decision needs to be revisited. | 2026-05-23 |

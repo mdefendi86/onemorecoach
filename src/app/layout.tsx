@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Bebas_Neue, Inter } from 'next/font/google'
 import { business } from '@/data/business'
+import { SiteNav } from '@/components/SiteNav'
+import { SiteFooter } from '@/components/SiteFooter'
 import './globals.css'
 
 const inter = Inter({
@@ -29,7 +31,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${bebas.variable}`}>
-      <body>{children}</body>
+      <body className="flex min-h-screen flex-col">
+        <SiteNav />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
+      </body>
     </html>
   )
 }

@@ -15,7 +15,7 @@
 These decisions came from the user after the first inventory pass and have been applied throughout this revision:
 
 1. **Three near-duplicate files were removed from `images/owner-images/`** — `Josh doing a ez bar curl front view zoomed out.webp` and `Josh doing ez bar curl side view zoomed out.webp` are no longer in the folder. They were the weaker compositions of two near-duplicate pairs flagged in the first pass. **Net effect:** entries renumbered, near-duplicate concerns simplified.
-2. **Sydney is approved for website use.** No per-photo "consent confirmation required" flag — it has been resolved at the inventory level. Recommended (not blocking): keep a one-paragraph signed photo release on file for every client whose image goes on the site, as standard practice.
+2. **All currently provided images are approved for public website use at the project level** (confirmed 2026-05-25 by the project owner before Phase 1). This covers every Sydney/owner/coach/training/coaching/client photo currently in `images/owner-images/` and `results/`. No per-photo "consent confirmation required" flag anywhere in this inventory. Standard policy going forward: for any *future* clients whose photos are added to the site, get a one-paragraph signed photo release as best practice — but nothing currently in the repo is blocked on this.
 3. **"Do not reference any brand other than One More Coach"** is the standing rule. Applies to clothing, signage, branded equipment, and visible third-party logos in frame. The two image-level implications:
    - The "WORLDWIDE BULLIES" shirt on the client in entry #11 is a third-party brand and would need to be cropped out or the photo skipped.
    - The "JUST LIFT GYM" sign in entry #13 is a brand reference too; venue credit is a separate decision (see [REBUILD_PLAN.md §15 open question #3](REBUILD_PLAN.md#15-open-questions--blockers)) — flagged but not auto-skipped.
@@ -157,7 +157,7 @@ Per the standing "no brands other than One More Coach" rule, the client's shirt 
 
 ### Josh + Sydney — coaching in action (4 files)
 
-These illustrate what working with Josh looks like — the strongest social-proof asset in the set after the personal-transformation photo. Sydney inclusion is approved at the inventory level (resolved decision #2); the prior per-photo "consent" flag has been removed.
+These illustrate what working with Josh looks like — the strongest social-proof asset in the set after the personal-transformation photo. Sydney inclusion is approved at the project level (resolved decision #2); the prior per-photo "consent" flag has been removed.
 
 ---
 
@@ -225,7 +225,7 @@ Both are now categorized as training/action (not "client result"), and routed to
 - **Destination:** `public/images/programs/`
 - **Concerns:**
   - **Underexposed** — whole image is darker than the rest of the set; subject's face is in shadow. Workable but not a hero candidate
-  - Other gym-goers visible in the background (man in yellow shirt at left, another patron at right) — "implied consent in a public space" usually applies, but worth flagging if a face becomes identifiable in the final crop
+  - Other gym-goers visible in the background (man in yellow shirt at left, another patron at right) — fine for use; image was provided as part of the project-approved set. Mentioned only so if a final crop tightens around a third-party face, the option to blur or recrop is on the table.
   - With this file now routed to `programs/` rather than `results/`, framing it as "what training looks like" rather than "a client's outcome" is the right read
 
 ---
@@ -285,7 +285,7 @@ Routing recommendations against the destination list in [REBUILD_PLAN.md §12](R
 | **Phone-selfie quality vs studio** | #1 | Acceptable as fallback. A proper headshot session would be a meaningful About-page upgrade — track in `docs/launch-checklist.md`. |
 | **No client before/after pairs in `owner-images/`** | n/a (by design) | Client result imagery comes from the existing `results/` folder. The launch checklist should still track whether additional real before/after composites are wanted before launch (already flagged in [CURRENT_SITE_AUDIT.md §8](CURRENT_SITE_AUDIT.md#8-current-content-gaps)). |
 | **File size** | None | Every file is already 61–203 KB. No optimization needed beyond the WebP conversion the user has already done. |
-| **Client photo consent** | (resolved at inventory level) | Sydney is approved for website use (resolved decision #2). Standard signed photo release for every future client whose image goes on the site is recommended as best practice but not blocking. |
+| **Client/owner photo consent** | (resolved at project level — see top-of-doc finding) | All currently provided images are approved for public website use (2026-05-25). Standard signed photo release for any *future* client whose image is added to the site is recommended as best practice but not blocking. |
 | **"Josh Horton" branded items in frame** | (resolved at inventory level) | Not a brand conflict — Josh Horton is the owner (resolved decision #4). No action required. |
 
 ---

@@ -3,19 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "description": "One More Coach — marketing + lead-capture site. Rebuild on Next.js App Router + Tailwind v4. See Rebuild Plan/REBUILD_PLAN.md.",
-"scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "lint": "eslint .",
-  "typecheck": "tsc --noEmit"
-},
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
+    "lucide-react": "^1.16.0",
     "next": "^16.2.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
-"devDependencies": {
+  "devDependencies": {
     "@eslint/eslintrc": "^3.3.0",
     "@tailwindcss/postcss": "^4.1.0",
     "@types/node": "^22.10.0",
