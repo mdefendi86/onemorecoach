@@ -67,6 +67,9 @@ export const programs: Program[] = [
     ],
     ctaLabel: 'Apply for In-Person Training',
     needsClientInput: true, // venue + pricing both pending
+    heroImageSrc: '/coaching/coach-josh-form-check.webp',
+    heroImageAlt:
+      "Coach Josh observing a client's form as she performs a barbell Romanian deadlift in a warehouse-style gym.",
   },
   {
     slug: 'lifestyle',

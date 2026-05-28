@@ -59,6 +59,9 @@ export interface Coach {
   headshotAlt?: string
   fullLengthSrc: string | null
   fullLengthAlt?: string
+  /** Coaching-in-action shot used as an image break on the About page. See REBUILD_PLAN.md §15 #18. */
+  actionShotSrc: string | null
+  actionShotAlt?: string
   transformationSrc: string | null
   transformationAlt?: string
   isPlaceholder: boolean
@@ -93,6 +96,7 @@ export interface Program {
   tiers: PricingTier[]
   ctaLabel: string
   heroImageSrc?: string | null
+  heroImageAlt?: string
   supportingImageSrcs?: string[]
   needsClientInput?: boolean
 }

@@ -46,7 +46,8 @@ export const copy = {
   },
 
   bioSnippet: {
-    ctaLabel: 'Full Bio →',
+    eyebrow: 'Meet Your Coach',
+    ctaLabel: 'More About Me →',
   },
 
   applyCta: {
@@ -64,7 +65,7 @@ export const copy = {
 
   // -------------------- About page --------------------
   about: {
-    storyTitle: 'The Story',
+    storyTitle: 'My Story',
     howIHelp: {
       eyebrow: 'The Approach',
       title: 'How I Help You Win',
@@ -85,7 +86,7 @@ export const copy = {
       sub: 'Apply below and Josh will reach out within 24 hours to get you started.',
       ctaLabel: 'Apply for Coaching',
     },
-    workWithCtaLabel: 'Work With Josh',
+    workWithCtaLabel: 'Work With Me',
   },
 
   // -------------------- Programs page --------------------
@@ -131,11 +132,21 @@ export const copy = {
     whatHappensNextTitle: 'What Happens Next',
     formTitle: 'Application Form',
     formSubmitLabel: 'Submit Application',
+    formSendingLabel: 'Sending…',
     formNote:
       'No spam. Your info is only used to respond to your application. Josh will contact you directly within 24 hours.',
     prefillBannerText:
       "✓ Your selected plan is pre-filled below — update anything before submitting.",
-    phaseStubNote:
-      "Form submission lands in Phase 3. This page renders the full layout and pre-fills program/term from URL params.",
+    formSuccessTitle: 'Application received',
+    formSuccessBody:
+      "Thanks for applying. Josh will reach out within 24 hours with next steps.",
+    formErrorValidationBody:
+      'Please double-check the required fields and try again.',
+    formErrorRateLimitedBody:
+      'Too many submissions from this network. Please try again in an hour — or email Josh directly using the address above.',
+    formErrorMisconfiguredBody:
+      'The application form is temporarily unavailable. Please email Josh directly using the address above and he will follow up.',
+    formErrorSendFailedBody:
+      "Something went wrong sending your application. Please try again in a moment — or email Josh directly if it keeps happening.",
   },
 } as const

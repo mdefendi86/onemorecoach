@@ -98,6 +98,22 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      {coach.actionShotSrc ? (
+        <section className="px-5 py-6 md:px-10 md:py-10">
+          <Container>
+            <div className="relative mx-auto aspect-[4/5] max-w-[600px] overflow-hidden rounded-[var(--radius)] md:aspect-[16/9]">
+              <Image
+                src={coach.actionShotSrc}
+                alt={coach.actionShotAlt ?? `${coach.name} coaching a client`}
+                fill
+                sizes="(min-width: 768px) 600px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </Container>
+        </section>
+      ) : null}
+
       <HowIHelpGrid />
       <WhyOnlineGrid />
       <InstagramCtaSection location="about" />

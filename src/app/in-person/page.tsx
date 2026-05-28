@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
 import { SectionHead } from '@/components/ui/SectionHead'
@@ -50,6 +51,23 @@ export default function InPersonPage() {
           />
         </Container>
       </section>
+
+      {inPerson.heroImageSrc ? (
+        <section className="px-5 pt-2 pb-6 md:px-10 md:pt-4 md:pb-10">
+          <Container>
+            <div className="relative mx-auto aspect-[4/5] max-w-[900px] overflow-hidden rounded-[var(--radius)] md:aspect-[16/9]">
+              <Image
+                src={inPerson.heroImageSrc}
+                alt={inPerson.heroImageAlt ?? `In-person coaching with ${business.name}`}
+                fill
+                sizes="(min-width: 768px) 900px, 100vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       <section className="px-5 py-12 md:px-10 md:py-16">
         <Container>

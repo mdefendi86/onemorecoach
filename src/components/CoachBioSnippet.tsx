@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
+import { SectionTag } from '@/components/ui/SectionTag'
 import { coach } from '@/data/coach'
 import { copy } from '@/data/copy'
 
@@ -19,6 +20,9 @@ export function CoachBioSnippet() {
   return (
     <section id="coach-bio" className="px-5 py-12 md:px-10 md:py-16">
       <Container>
+        <div className="mb-7 text-center">
+          <SectionTag>{copy.bioSnippet.eyebrow}</SectionTag>
+        </div>
         <div className="mx-auto flex max-w-[600px] flex-col items-center gap-5 text-center md:flex-row md:items-start md:text-left">
           {coach.headshotSrc ? (
             <div className="relative h-[90px] w-[90px] shrink-0 overflow-hidden rounded-full border-2 border-accent">

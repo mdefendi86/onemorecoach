@@ -317,7 +317,41 @@ When Phase 4 (images + assets) of [REBUILD_PLAN.md §14](REBUILD_PLAN.md#14-phas
 
 When new images arrive (proper studio headshot, real client before/afters, hero candidates), add them as new sections to this file rather than starting a fresh inventory. This file is the running register of every photo asset considered for the site.
 
+## Content gap: package-specific imagery (added 2026-05-27)
+
+Per [REBUILD_PLAN.md §15 #19](REBUILD_PLAN.md#15-open-questions--blockers), the Programs page and program cards intentionally do **not** carry stock gym imagery in v1 — forcing a random gym photo onto a "Nutrition" or "Online Coaching" card would feel mismatched and weaken the page. Each of the five program packages needs its own visually-matching imagery before the Programs page picks up program-specific photos.
+
+| Package | Image needed | Existing inventory cover this? |
+|---|---|---|
+| Online coaching | Remote check-in moment, app/phone in hand, training video being reviewed, message-thread context | **No.** Owner-images set doesn't cover this. New shoot needed. |
+| Nutrition & Supplementation | Portioned meal, meal prep, supplement stack, food + plate visuals | **No.** Owner-images set doesn't cover this. New shoot needed. |
+| Training Guidance | Solo training, workout in progress, programming notes, form check on a single lift | **Partially.** Solo Josh training shots in owner-images (e.g. EZ-bar curl, dumbbell curl) could work as stand-ins but would ideally be re-shot to match the brand context. |
+| Lifestyle | "Complete program" feel — training + nutrition together, or a client mid-routine across the full workflow | **Partially.** Coaching-in-action shots are close but lean too in-person-specific. |
+| In-Person Training | Coaching at the venue, hands-on cueing, form check at the gym | **Yes.** The existing coaching-in-action set (Josh + Sydney, RDL form check / hamstring curl spot / chest-supported row) covers this. Already routed for the In-Person page hero in Phase 2. |
+
+Until the missing imagery arrives, `ProgramOverviewCard` and `ProgramSection` render text-and-icon cards (no images on cards). When images land, they populate `programs.ts → <slug>.heroImageSrc` + `heroImageAlt` (and optionally `supportingImageSrcs`) and the components light up automatically — no JSX changes needed.
+
+---
+
+## Phase 2 implementation path note (added 2026-05-27)
+
+This inventory was originally written assuming destinations like `public/images/coach/` and `public/images/results/`. The Phase 2 implementation uses the **shorter** `public/coach/` and `public/results/` (skipping the `images/` parent directory). Both work in Next.js; the shorter path was chosen for path ergonomics and lower import noise.
+
+Folders that exist on disk after Phase 2 image copy:
+
+| Folder | Contains | Routed by |
+|---|---|---|
+| `public/coach/` | `josh-headshot.webp`, `josh-full.webp` | `coach.ts → headshotSrc`, `coach.ts → fullLengthSrc` |
+| `public/coaching/` | `coach-josh-form-check.webp` (RDL spot), `coach-josh-hamstring-spot.webp` | `programs.ts → in-person → heroImageSrc`, `coach.ts → actionShotSrc` (per §15 #18) |
+| `public/results/` | `result-1.jpg` … `result-4.jpg` | `results.ts` |
+
+The §13 destination column still reads `public/images/X/` for legibility — the actual paths on disk are `public/X/`. If the structure ever gets restandardized, this is the divergence to reconcile.
+
+---
+
 ## Change log
 
 - **2026-05-25 (initial pass)** — 17 files cataloged with consent flags, brand-conflict flags, and a suggestion to add `public/images/clients/`.
-- **2026-05-25 (this revision)** — Reduced to 14 files (3 near-duplicates removed by user). Applied 7 resolved content decisions: Sydney inclusion approved, "Josh Horton" branded items are not a conflict, standing "no other brands" rule clarified, `results/` reserved for the existing client-results folder, Josh's personal transformation re-routed from `results/` to `coach/`, Sydney solo shots re-routed from `results/` to `programs/`, `public/images/clients/` suggestion retracted.
+- **2026-05-25 (revision)** — Reduced to 14 files (3 near-duplicates removed by user). Applied 7 resolved content decisions: Sydney inclusion approved, "Josh Horton" branded items are not a conflict, standing "no other brands" rule clarified, `results/` reserved for the existing client-results folder, Josh's personal transformation re-routed from `results/` to `coach/`, Sydney solo shots re-routed from `results/` to `programs/`, `public/images/clients/` suggestion retracted.
+- **2026-05-25 (Phase 1 directive)** — All currently provided images approved at the **project level**. Per-photo consent flags removed.
+- **2026-05-27 (Phase 2 + 3 cutover)** — Added "Content gap: package-specific imagery" section. Added "Phase 2 implementation path note" reconciling `public/images/X/` (this doc) vs `public/X/` (actual disk). Recorded Phase 2 image-copy routing: 2 coaching-in-action shots into `public/coaching/` for In-Person hero + About mid-page break, per [REBUILD_PLAN.md §15 #18](REBUILD_PLAN.md#15-open-questions--blockers).

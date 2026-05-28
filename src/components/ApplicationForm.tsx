@@ -1,22 +1,21 @@
 'use client'
 
-import { useState } from 'react'
+import { useActionState, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { copy } from '@/data/copy'
+import { submitApplication, type ApplicationFormState } from '@/app/apply/actions'
+import { trackEvent } from '@/lib/analytics'
 
 /*
-  Phase 2: form SHELL only — every field renders, URL params pre-fill the
-  program/term selects, and the prefill banner shows when params are applied.
+  Application form — Phase 3 wires the Server Action.
 
-  The submit button is intentionally a no-op stub. Phase 3 (REBUILD_PLAN.md
-  §9) will:
-    - Wire a Server Action to POST via Resend
-    - Add Zod validation
-    - Add honeypot + rate limit
-    - Show real inline success/error states
-    - Fire `application_submit` on 200
-
-  Until then, clicking Submit shows the Phase 3 stub message.
+  REBUILD_PLAN.md §9 behavior:
+   - URL prefill on mount (program / term)
+   - Prefill banner if any param matched
+   - Hidden honeypot ("company") — Server Action returns fake success when filled
+   - useActionState drives submit; pending state disables the button
+   - Inline success / error UI (no third-party redirect)
+   - Fires `application_submit` analytics event on 200 success
 */
 
 const PROGRAM_OPTIONS = [
@@ -42,6 +41,21 @@ const GOAL_OPTIONS = [
   { value: 'not-sure', label: 'Not Sure Yet' },
 ] as const
 
+const INITIAL_STATE: ApplicationFormState = { status: 'idle' }
+
+function errorCopy(code: 'validation' | 'rate-limited' | 'misconfigured' | 'send-failed') {
+  switch (code) {
+    case 'validation':
+      return copy.applyPage.formErrorValidationBody
+    case 'rate-limited':
+      return copy.applyPage.formErrorRateLimitedBody
+    case 'misconfigured':
+      return copy.applyPage.formErrorMisconfiguredBody
+    case 'send-failed':
+      return copy.applyPage.formErrorSendFailedBody
+  }
+}
+
 export function ApplicationForm() {
   const params = useSearchParams()
   const programParam = params.get('program') ?? ''
@@ -51,22 +65,40 @@ export function ApplicationForm() {
   const initialTerm = TERM_OPTIONS.some((o) => o.value === termParam) ? termParam : ''
   const prefilled = Boolean(initialProgram || initialTerm)
 
-  // Initial state set once from URL params. Re-mounting on navigation
-  // re-runs initialization; URL changes while the form is mounted are
-  // an accepted edge case (Phase 3 may revisit).
   const [program, setProgram] = useState(initialProgram)
   const [term, setTerm] = useState(initialTerm)
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    // Phase 3 will replace this with a Server Action call.
-    // For Phase 2 we deliberately do nothing so the page doesn't pretend
-    // to submit.
+  const [state, formAction, isPending] = useActionState(submitApplication, INITIAL_STATE)
+
+  // Fire analytics on success — useEffect is the correct place because
+  // this is "react to state change" (post-server-action), not "sync
+  // external state into React".
+  useEffect(() => {
+    if (state.status === 'success') {
+      trackEvent('application_submit', { form_location: 'apply' })
+    }
+  }, [state.status])
+
+  if (state.status === 'success') {
+    return (
+      <div
+        role="status"
+        aria-live="polite"
+        className="rounded-[var(--radius)] border border-accent/40 bg-accent/[0.06] px-6 py-8 text-center md:px-8 md:py-10"
+      >
+        <h3 className="font-display text-accent text-[1.8rem]">
+          {copy.applyPage.formSuccessTitle}
+        </h3>
+        <p className="text-muted mx-auto mt-3 max-w-md text-[0.95rem] leading-[1.65]">
+          {copy.applyPage.formSuccessBody}
+        </p>
+      </div>
+    )
   }
 
   return (
     <form
-      onSubmit={handleSubmit}
+      action={formAction}
       noValidate
       aria-label="Coaching application form"
       className="rounded-[var(--radius)] border border-border bg-bg-card px-6 py-7 md:px-7 md:py-8"
@@ -81,10 +113,6 @@ export function ApplicationForm() {
           {copy.applyPage.prefillBannerText}
         </p>
       ) : null}
-
-      <p className="text-muted mt-4 rounded border border-border bg-bg px-3.5 py-2.5 text-[0.78rem] leading-[1.55]">
-        {copy.applyPage.phaseStubNote}
-      </p>
 
       <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2">
         <Field id="apply-name" label="Full Name *">
@@ -148,9 +176,7 @@ export function ApplicationForm() {
             onChange={(e) => setProgram(e.target.value)}
             className={inputClasses}
           >
-            <option value="" disabled>
-              Which program interests you?
-            </option>
+            <option value="">Which program interests you?</option>
             {PROGRAM_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
                 {opt.label}
@@ -169,9 +195,7 @@ export function ApplicationForm() {
             onChange={(e) => setTerm(e.target.value)}
             className={inputClasses}
           >
-            <option value="" disabled>
-              Select if you have a preference…
-            </option>
+            <option value="">Select if you have a preference…</option>
             {TERM_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
                 {opt.label}
@@ -205,7 +229,7 @@ export function ApplicationForm() {
         </Field>
       </div>
 
-      {/* Honeypot — hidden field. Phase 3 server action will reject submits where this is non-empty. */}
+      {/* Honeypot — hidden field; Server Action returns fake success if non-empty. */}
       <input
         type="text"
         name="company"
@@ -215,13 +239,23 @@ export function ApplicationForm() {
         className="absolute -left-[5000px] h-0 w-0 opacity-0"
       />
 
+      {state.status === 'error' ? (
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="mt-5 rounded border border-red-500/40 bg-red-500/[0.08] px-3.5 py-3 text-[0.85rem] leading-[1.55] text-red-200"
+        >
+          {errorCopy(state.code)}
+        </div>
+      ) : null}
+
       <button
         type="submit"
-        disabled
-        aria-disabled="true"
-        className="bg-accent mt-6 inline-flex w-full items-center justify-center rounded-[var(--radius)] px-6 py-4 font-display text-[1.15rem] tracking-[0.06em] text-[color:var(--color-bg)] opacity-60"
+        disabled={isPending}
+        aria-disabled={isPending}
+        className="bg-accent mt-6 inline-flex w-full items-center justify-center rounded-[var(--radius)] px-6 py-4 font-display text-[1.15rem] tracking-[0.06em] text-[color:var(--color-bg)] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {copy.applyPage.formSubmitLabel}
+        {isPending ? copy.applyPage.formSendingLabel : copy.applyPage.formSubmitLabel}
       </button>
       <p className="text-muted mt-3 text-center text-[0.76rem] leading-[1.5]">
         {copy.applyPage.formNote}
@@ -230,7 +264,7 @@ export function ApplicationForm() {
   )
 }
 
-// --- helpers (kept local — these are form-specific, not shared primitives) ---
+// --- helpers (form-specific, not shared primitives) ---
 
 const inputClasses =
   'w-full rounded-[var(--radius)] border border-border bg-bg px-3.5 py-3 text-[0.95rem] leading-[1.4] text-text appearance-none transition-colors placeholder:text-[#444] focus:border-accent focus:outline-none'
