@@ -25,18 +25,18 @@ export function CoachBioSnippet() {
         </div>
         <div className="mx-auto flex max-w-[600px] flex-col items-center gap-5 text-center md:flex-row md:items-start md:text-left">
           {coach.headshotSrc ? (
-            <div className="relative h-[90px] w-[90px] shrink-0 overflow-hidden rounded-full border-2 border-accent">
+            <div className="relative h-[120px] w-[120px] shrink-0 overflow-hidden rounded-full border-2 border-accent md:h-[160px] md:w-[160px]">
               <Image
                 src={coach.headshotSrc}
                 alt={coach.headshotAlt ?? `${coach.name} — coach headshot`}
                 fill
-                sizes="90px"
+                sizes="(min-width: 768px) 160px, 120px"
                 className="object-cover object-top"
               />
             </div>
           ) : (
             <div
-              className="font-display text-accent flex h-[90px] w-[90px] shrink-0 items-center justify-center rounded-full border-2 border-accent bg-bg-card text-[2rem]"
+              className="font-display text-accent flex h-[120px] w-[120px] shrink-0 items-center justify-center rounded-full border-2 border-accent bg-bg-card text-[2.5rem] md:h-[160px] md:w-[160px] md:text-[3rem]"
               aria-hidden="true"
             >
               {initials}

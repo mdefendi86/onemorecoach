@@ -47,7 +47,7 @@ export const copy = {
 
   bioSnippet: {
     eyebrow: 'Meet Your Coach',
-    ctaLabel: 'More About Me →',
+    ctaLabel: 'More About Me',
   },
 
   applyCta: {

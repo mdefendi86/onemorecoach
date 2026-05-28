@@ -38,6 +38,11 @@ export const coach: Coach = {
   pullQuote:
     "My goal isn't just to give you a workout. It's to give you the blueprint for a complete lifestyle transformation.",
 
+  // TODO(phase-4): Replace with a true studio/profile portrait. The current
+  // file is a phone-selfie starter (head + shoulders, smiling, plain wall)
+  // approved at the project level — workable as a profile image but a proper
+  // studio shoot would meaningfully upgrade the Meet Your Coach section and
+  // the About page hero. Tracked in IMAGE_INVENTORY.md as Optional Upgrade.
   headshotSrc: '/coach/josh-headshot.webp',
   headshotAlt: 'Coach Josh Horton, smiling, arms crossed, wearing a black t-shirt.',
 
