@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import { Container } from '@/components/ui/Container'
 import { SectionHead } from '@/components/ui/SectionHead'
+import { ProgramSection } from '@/components/ProgramSection'
+import { ApplyCtaSection } from '@/components/ApplyCtaSection'
+import { programs } from '@/data/programs'
+import { copy } from '@/data/copy'
 
 export const metadata: Metadata = {
   title: 'Programs & Pricing',
@@ -9,18 +13,34 @@ export const metadata: Metadata = {
 }
 
 /*
-  Phase 1 placeholder for /programs.
-  Real program cards + pricing tiers driven from programs.ts land in Phase 2.
+  Programs page — one ProgramSection per program from programs.ts.
+  Sections alternate background color subtly via the `alt` prop.
 */
 export default function ProgramsPage() {
   return (
-    <Container className="py-20">
-      <SectionHead
-        as={1}
-        tag="Coaching Programs"
-        title="How Do You Want to Train?"
-        sub="In-person or online — both fully customized. Page content lands in Phase 2."
+    <>
+      <section className="px-5 pt-16 md:px-10 md:pt-20">
+        <Container>
+          <SectionHead
+            as={1}
+            tag={copy.programsPage.eyebrow}
+            title={copy.programsPage.title}
+            sub={copy.programsPage.sub}
+          />
+        </Container>
+      </section>
+
+      {programs.map((program, i) => (
+        <ProgramSection key={program.slug} program={program} index={i} alt={i % 2 === 1} />
+      ))}
+
+      <ApplyCtaSection
+        location="programs_page_bottom"
+        eyebrow={copy.programsPage.bottomCta.eyebrow}
+        title={copy.programsPage.bottomCta.title}
+        sub={copy.programsPage.bottomCta.sub}
+        ctaLabel={copy.programsPage.bottomCta.ctaLabel}
       />
-    </Container>
+    </>
   )
 }

@@ -49,11 +49,18 @@ export interface Coach {
   role: string
   bioShort: string
   bioFull: string[] // paragraphs
+  /** Formal certifications (e.g. "NASM-CPT") — TBD until Josh confirms. */
   certs: string[]
+  /** Informal credentials usable today (e.g. "12 Years Training", "Competitive Bodybuilder"). */
+  credentials: string[]
   pullQuote?: string
   headshotSrc: string | null
+  /** Alt text for the headshot — required when headshotSrc is set. */
+  headshotAlt?: string
   fullLengthSrc: string | null
+  fullLengthAlt?: string
   transformationSrc: string | null
+  transformationAlt?: string
   isPlaceholder: boolean
 }
 

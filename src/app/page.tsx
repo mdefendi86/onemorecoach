@@ -1,32 +1,36 @@
-import { Container } from '@/components/ui/Container'
-import { SectionHead } from '@/components/ui/SectionHead'
-import { Button } from '@/components/ui/Button'
-import { business } from '@/data/business'
+import { Hero } from '@/components/Hero'
+import { StatsStrip } from '@/components/StatsStrip'
+import { ProgramsOverview } from '@/components/ProgramsOverview'
+import { IncludedGrid } from '@/components/IncludedGrid'
+import { ResultsGrid } from '@/components/ResultsGrid'
+import { TestimonialsGrid } from '@/components/TestimonialsGrid'
+import { CoachBioSnippet } from '@/components/CoachBioSnippet'
+import { InstagramCtaSection } from '@/components/InstagramCtaSection'
+import { ApplyCtaSection } from '@/components/ApplyCtaSection'
 
 /*
-  Phase 1 home placeholder.
-  Real homepage content (Hero · StatsStrip · ProgramsOverview · etc.)
-  is built in Phase 2. This page exists so the navigation works
-  end-to-end and the chrome (SiteNav + SiteFooter) has something to wrap.
+  Home page — section order ports the legacy index.html layout, with two
+  intentional differences:
+    1. Google reviews badge removed (Phase 5 work; was a half-broken
+       placeholder on the legacy site).
+    2. InstagramCtaSection placed near the social-proof area per
+       REBUILD_PLAN.md §15 #16.
+
+  Every section's content comes from a data file. Zero hex codes, zero
+  hardcoded headlines, zero hardcoded email/IG values in this file.
 */
 export default function HomePage() {
   return (
-    <Container className="py-20">
-      <SectionHead
-        as={1}
-        tag="Phase 1 Scaffold"
-        title={business.name}
-        sub={`${business.tagline} — chrome and navigation only. Page content lands in Phase 2.`}
-      />
-
-      <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-        <Button href="/apply" variant="primary">
-          Apply
-        </Button>
-        <Button href="/programs" variant="ghost">
-          See Programs
-        </Button>
-      </div>
-    </Container>
+    <>
+      <Hero />
+      <StatsStrip />
+      <ProgramsOverview />
+      <IncludedGrid />
+      <ResultsGrid />
+      <TestimonialsGrid />
+      <InstagramCtaSection location="home_social_proof" />
+      <CoachBioSnippet />
+      <ApplyCtaSection location="home_bottom" />
+    </>
   )
 }
